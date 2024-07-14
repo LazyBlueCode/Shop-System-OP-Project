@@ -107,17 +107,16 @@ public class Market implements IMarket{
         return res;
     }
 
-    public boolean AddProduct(String sellerName, Product product) {
+    public void AddProduct(String sellerName, Product product) {
         for (int i = 0; i < sellerArray.length; i++) {
             if (sellerArray[i] != null) {
                 if (sellerArray[i].getName().equalsIgnoreCase(sellerName)) {
                     sellerArray[i].AddToShop(product);
-                    return true;
+                    return;
                 }
             }
-
         }
-        return false;
+
     }
 
     public boolean AddSeller(String username, String password) {
@@ -208,22 +207,6 @@ public class Market implements IMarket{
         return res;
     }
 
-    public int HistoryCartLength(String buyer) {
-        int res = 0;
-        for (int i = 0; i < this.buyersArray.length; i++) {
-            if (this.buyersArray[i] != null) {
-                if (this.buyersArray[i].getName().equalsIgnoreCase(buyer)) {
-                 for (int j = 0; j < this.buyersArray[i].getHistory().length; j++) {
-                     if (this.buyersArray[i].getHistory()[j] != null) {
-                         res += 1;
-                     }
-                 }
-                }
-            }
-        }
-        return res;
-    }
-
     public void HistoryCartSwap(String buyer, int cart) {
         for (int i = 0; i < this.buyersArray.length; i++) {
             if (this.buyersArray[i] != null) {
@@ -275,16 +258,14 @@ public class Market implements IMarket{
 
     public String SellersInfo() {
         String res = "";
-        User[] sorted_array = removeNull(getSellerArray(), getNumOfSellers());
-        Arrays.sort(sorted_array, new CompareUserByName());
+        Sellers[] sorted_array = removeNullSellers(getSellerArray(), getNumOfSellers());
+        Arrays.sort(sorted_array, new CompareSellerByNumOfProducts());
         for (int i = 0; i < sorted_array.length; i++) {
             if (sorted_array[i] != null) {
-                if (sorted_array[i] instanceof Sellers) {
-                    Sellers temp_seller = (Sellers) sorted_array[i];
+                    Sellers temp_seller = sorted_array[i];
                     res += "________________________\n";
                     res += "Seller " + (i + 1) + ": " + temp_seller.getName() + "\n";
                     res += "    Shop: \n" + temp_seller.getShop().ProductList() + "\n";
-                }
             }
         }
         return res;
@@ -292,7 +273,7 @@ public class Market implements IMarket{
 
     public Cart GetProductByCategory(Category category) {
         Cart res = new Cart();
-        Cart temp = new Cart();
+        Cart temp;
         for (int i = 0; i < this.sellerArray.length; i++) {
             if (this.sellerArray[i] != null) {
                 temp = this.sellerArray[i].getShop();
@@ -314,6 +295,17 @@ public class Market implements IMarket{
         for (int i = 0; i < users.length; i++) {
             if (users[i] != null) {
                 res[j] = users[i];
+                j++;
+            }
+        }
+        return res;
+    }
+    public Sellers[] removeNullSellers(Sellers[] sellers, int count) {
+        Sellers[] res = new Sellers[count];
+        int j = 0;
+        for (int i = 0; i < sellers.length; i++) {
+            if (sellers[i] != null) {
+                res[j] = sellers[i];
                 j++;
             }
         }
@@ -426,15 +418,5 @@ public class Market implements IMarket{
         }
         return "History is empty, or only has empty carts.";
     }
-
-    public String proccesInputHistoryCart(Buyers buyer, int index) {
-        try {
-            exceptionUtill.checkHistoryCartInput(buyer, index);
-        } catch(IndexOutOfBoundsException e){
-            return e.getMessage();
-        }
-        return null;
-    }
-
 }
 

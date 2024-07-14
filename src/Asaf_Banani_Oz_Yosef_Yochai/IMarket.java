@@ -3,7 +3,7 @@ package Asaf_Banani_Oz_Yosef_Yochai;
 public interface IMarket {
     boolean AddSeller(String name, String password);
     boolean AddBuyer(String name, String password, Adress address);
-    boolean AddProduct(String sellerName, Product product);
+    void AddProduct(String sellerName, Product product);
     void AddProductToBuyer(String buyerName, Product product);
     Product GetProduct(String productName, String sellerName);
     Cart GetProductByCategory(Category category);

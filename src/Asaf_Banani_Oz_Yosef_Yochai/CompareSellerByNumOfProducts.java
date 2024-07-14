@@ -6,7 +6,7 @@ public class CompareSellerByNumOfProducts implements Comparator<Sellers> {
 
     @Override
     public int compare(Sellers s1, Sellers s2) {
-        return s1.getShop().getProducts().length-s2.getShop().getProducts().length;
+        return s2.getShop().getProducts_count() - s1.getShop().getProducts_count();
     }
 
 
