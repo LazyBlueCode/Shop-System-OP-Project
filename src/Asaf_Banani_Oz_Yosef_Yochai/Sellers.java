@@ -8,8 +8,6 @@ public class Sellers extends User {
         this.shop = cart;
     }
 
-
-
     public Cart getShop() {
         return shop;
     }

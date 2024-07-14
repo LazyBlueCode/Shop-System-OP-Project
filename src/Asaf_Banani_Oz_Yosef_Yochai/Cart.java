@@ -6,13 +6,16 @@ import java.util.Date;
 public class Cart{
     private Date date;
     private Product[] products;
+    private int products_count;
     public Cart() {
         this.products = new Product[10];
         this.date = null;
+        this.products_count = 0;
     }
 
-    public void setProducts(Product[] products) {
+    public void setProducts(Product[] products, int products_count) {
         this.products = products;
+        this.products_count = products_count;
     }
     public Date getDate(){
         return this.date;
@@ -50,6 +53,9 @@ public class Cart{
     public Product[] getProducts() {
         return products;
     }
+    public int getProducts_count() {
+        return products_count;
+    }
     public Product findProduct(String name){
         for(int i = 0; i < products.length; i++){
             if(products[i] != null && products[i].getName().equals(name)){
@@ -63,6 +69,7 @@ public class Cart{
         for(int i = 0; i<this.products.length;i++) {
             if(this.products[i]==null) {
                 this.products[i]=prod;
+                this.products_count++;
                 return;
             }
         }

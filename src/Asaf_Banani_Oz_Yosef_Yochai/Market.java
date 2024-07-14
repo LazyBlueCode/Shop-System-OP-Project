@@ -4,7 +4,7 @@ package Asaf_Banani_Oz_Yosef_Yochai;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-public class Market{
+public class Market implements IMarket{
     private Sellers[] sellerArray;
     private Buyers[] buyersArray;
     private int SerialCounter;
@@ -195,19 +195,6 @@ public class Market{
         }
     }
 
-    public boolean IsHistoryEmpty(String buyer) {
-        for (int i = 0; i < this.buyersArray.length; i++) {
-            if (this.buyersArray[i] != null) {
-                if (this.buyersArray[i].getName().equalsIgnoreCase(buyer)) {
-                    if (this.buyersArray[i].getHistory()[0] == null) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
     public String HistoryList(String buyer) {
         String res = "";
         for (int i = 0; i < this.buyersArray.length; i++) {
@@ -241,7 +228,7 @@ public class Market{
         for (int i = 0; i < this.buyersArray.length; i++) {
             if (this.buyersArray[i] != null) {
                 if (this.buyersArray[i].getName().equalsIgnoreCase(buyer)) {
-                    this.buyersArray[i].getCart().setProducts(new Product[this.buyersArray[i].getHistory()[cart - 1].getProducts().length]);
+                    this.buyersArray[i].getCart().setProducts(new Product[this.buyersArray[i].getHistory()[cart - 1].getProducts().length],0);
                     for (int j = 0; j < this.buyersArray[i].getHistory()[cart - 1].getProducts().length; j++) {
                         if (this.buyersArray[i].getHistory()[cart - 1].getProducts()[j] != null)
                             this.buyersArray[i].getCart().getProducts()[j] = this.buyersArray[i].getHistory()[cart - 1].getProducts()[j];
@@ -334,114 +321,119 @@ public class Market{
     }
 
     //EXCEPTIONS
-    public boolean processInputString(String str) {
+    public String processInputString(String str) {
         try {
             exceptionUtill.checkStringInput(str);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return false;
+            return e.getMessage();
         }
-        return true;
+        return null;
     }
 
-    public boolean processInputPassword(String password) {
+    public String processInputPassword(String password) {
         try {
             exceptionUtill.checkPasswordInput(password);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return false;
+            return e.getMessage();
         }
-        return true;
+        return null;
     }
 
-    public boolean processInputAddress(String address) {
+    public String processInputAddress(String address) {
         try {
             exceptionUtill.checkAddressInput(address);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return false;
+            return e.getMessage();
         }
-        return true;
+        return null;
     }
 
-    public boolean processInputSentece(String str) {
+    public String processInputSentece(String str) {
         try {
             exceptionUtill.checkSentenceInput(str);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return false;
+            return e.getMessage();
         }
-        return true;
+        return null;
     }
 
-    public boolean processInputCategory(String category) {
+    public String processInputCategory(String category) {
         try {
             exceptionUtill.checkCategoryInput(category);
         } catch (IllegalArgumentException e) {
-            System.out.println("Not a valid category: (KIDS/CLOTHING/ELECTRONIC/OFFICE)");
-            return false;
+            return "Not a valid category: (KIDS/CLOTHING/ELECTRONIC/OFFICE)";
         }
-        return true;
+        return null;
     }
 
-    public boolean processInputDouble(String price) {
+    public String processInputDouble(String price) {
         try {
             exceptionUtill.checkDoubleInput(price);
         } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid number.");
-            return false;
+            return "Please enter a valid number.";
         }
-        return true;
+        return null;
     }
 
-    public boolean processInputInt(String integer) {
+    public String processInputInt(String integer) {
         try {
             exceptionUtill.checkIntegerInput(integer);
         } catch (NumberFormatException e) {
-            System.out.println("Input must contains only numbers.");
-            return false;
+            return "Input must contains only numbers.";
         }
-        return true;
+        return null;
     }
 
-    public boolean processInputAnswer(String ans) {
+    public String processInputAnswer(String ans) {
         try {
             exceptionUtill.checkAnswerInput(ans);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return false;
+            return e.getMessage();
         }
-        return true;
+        return null;
     }
 
-    public boolean processInputOption(String option) {
+    public String processInputOption(String option) {
         try {
             exceptionUtill.checkMenuInput(option);
         } catch (InputMismatchException e) {
-            System.out.println(e.getMessage());
-            return false;
+            return e.getMessage();
         }
-        return true;
+        return null;
+    }
+    public String processInputDynamicOption(String option,int min, int max) {
+        try {
+            exceptionUtill.checkDynamicMenuInput(option,min,max);
+        } catch (InputMismatchException e) {
+            return e.getMessage();
+        }
+        return null;
     }
 
-    public boolean proccesInputEmptyCart(Cart cart) {
+    public String proccesInputEmptyCart(Cart cart) {
         try {
             exceptionUtill.checkCartInput(cart);
         } catch (InputMismatchException e) {
-            System.out.println(e.getMessage());
-            return false;
+            return e.getMessage();
         }
-        return true;
+        return null;
+    }
+    public String proccesInputEmptyHistoryCart(Cart[] history) {
+        for (int i = 0; i < history.length; i++) {
+            if (history[i]!= null&&this.proccesInputEmptyCart(history[i]) == null) {
+                return null;
+            }
+        }
+        return "History is empty, or only has empty carts.";
     }
 
-    public boolean proccesInputHistoryCart(Buyers buyer, int index) {
+    public String proccesInputHistoryCart(Buyers buyer, int index) {
         try {
             exceptionUtill.checkHistoryCartInput(buyer, index);
         } catch(IndexOutOfBoundsException e){
-            System.out.println(e.getMessage());
-            return false;
+            return e.getMessage();
         }
-        return true;
+        return null;
     }
 
 }

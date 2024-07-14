@@ -2,7 +2,7 @@ package Asaf_Banani_Oz_Yosef_Yochai;
 
 import java.util.InputMismatchException;
 
-public class ExceptionUtill extends Exception {
+public class ExceptionUtill{
 
     public void checkStringInput(String input) throws IllegalArgumentException {
         if (input == null || input.trim().isEmpty()|| input.contains(" ")) {
@@ -67,6 +67,19 @@ public class ExceptionUtill extends Exception {
             throw new InputMismatchException("Option must be between 0 and 9.");
         }
     }
+    public void checkDynamicMenuInput(String input, int min,int max) throws InputMismatchException{
+        if(input == null || input.trim().isEmpty()) {
+            throw new InputMismatchException("Option cannot empty.");
+        }
+        else if(!input.matches("[0-9]+")) {
+            throw new InputMismatchException("Input must contains only numbers.");
+        }
+        int number = Integer.parseInt(input);
+        if (number < min || number > max) {
+            throw new InputMismatchException("Option must be between "+min+" and "+max);
+        }
+    }
+
     public void checkCartInput(Cart input) throws InputMismatchException{
         if(input == null) {
             throw new InputMismatchException("Option cannot empty.");
