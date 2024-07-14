@@ -240,7 +240,7 @@ public class Market implements IMarket{
     }
 
     public void checkout(Buyers buyer) {
-        buyer.AddToHistory(buyer.getCart());
+        buyer.AddToHistory();
         buyer.setCart(new Cart());
     }
 

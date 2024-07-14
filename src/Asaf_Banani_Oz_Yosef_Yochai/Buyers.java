@@ -1,6 +1,5 @@
 package Asaf_Banani_Oz_Yosef_Yochai;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Buyers extends User {
@@ -40,7 +39,7 @@ public class Buyers extends User {
     public void AddToBuyerCart(Product prod) {
         this.cart.AddToCart(prod);
     }
-    public void AddToHistory(Cart oldCart) {
+    public void AddToHistory(){
         for(int i = 0; i<this.history.length;i++) {
             if(this.history[i]==null) {
                 this.history[i]=cart;
@@ -51,7 +50,7 @@ public class Buyers extends User {
         }
         //went throgh history, did not find an empty space so must expend
         this.HistoryExpend();
-        this.AddToHistory(oldCart);
+        this.AddToHistory();
     }
     public void HistoryExpend() {
         if(this.history.length == 0) {

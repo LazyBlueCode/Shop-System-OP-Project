@@ -49,15 +49,15 @@ public class Main {
                 + " 7. Display All Sellers \n 8. Display All Products By Category \n 9. Renew History Cart";
 
         System.out.println(text);
-        String curretntMessage = null;//While !=null, there is an unresolved error in the code
+        String errorMessage = null;//While !=null, there is an unresolved error in the code
         do{
-            if (curretntMessage != null) {
-                System.out.println(curretntMessage);
+            if (errorMessage != null) {
+                System.out.println(errorMessage);
             }
             System.out.print("Enter option: ");
             choose = sc.nextLine();
-            curretntMessage =market.processInputOption(choose);
-        }while(curretntMessage!=null);
+            errorMessage =market.processInputOption(choose);
+        }while(errorMessage!=null);
 
         String name=null;
         String password;
@@ -71,21 +71,21 @@ public class Main {
                     do {
                         if (name != null && market.findSeller(name) != null)
                             System.out.println("Seller already exists!");
-                        if (curretntMessage != null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage != null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print("Add Name of seller: ");
                         name = sc.nextLine();
-                        curretntMessage = market.processInputString(name);
-                    } while (curretntMessage!= null || market.findSeller(name) != null);
+                        errorMessage = market.processInputString(name);
+                    } while (errorMessage!= null || market.findSeller(name) != null);
                     do {
-                        if (curretntMessage != null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage != null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print("Add password: ");
                         password = sc.nextLine();
-                        curretntMessage = market.processInputPassword(password);
-                    } while (curretntMessage != null);
+                        errorMessage = market.processInputPassword(password);
+                    } while (errorMessage != null);
                     market.AddSeller(name, password);
                     System.out.println("Added new seller.");
                 }
@@ -93,45 +93,45 @@ public class Main {
                     do {
                         if (name != null && market.findBuyer(name) != null)
                             System.out.println("Buyer already exists!");
-                        if (curretntMessage != null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage != null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print("Add Name of buyer: ");
                         name = sc.nextLine();
-                        curretntMessage = market.processInputString(name);
-                    } while (curretntMessage!=null || market.findBuyer(name) != null);
+                        errorMessage = market.processInputString(name);
+                    } while (errorMessage!=null || market.findBuyer(name) != null);
                     do {
-                        if (curretntMessage != null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage != null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print("Add password: ");
                         password = sc.nextLine();
-                        curretntMessage = market.processInputPassword(password);
-                    } while (curretntMessage!=null);
+                        errorMessage = market.processInputPassword(password);
+                    } while (errorMessage!=null);
                     do {
-                        if (curretntMessage != null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage != null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print("Add city: ");
                         city = sc.nextLine();
-                        curretntMessage =market.processInputSentece(city);
-                    } while (curretntMessage!=null);
+                        errorMessage =market.processInputSentece(city);
+                    } while (errorMessage!=null);
                     do {
-                        if (curretntMessage != null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage != null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print("Add country: ");
                         country = sc.nextLine();
-                        curretntMessage = market.processInputString(country);
-                    } while (curretntMessage!=null);
+                        errorMessage = market.processInputString(country);
+                    } while (errorMessage!=null);
                     do {
-                        if (curretntMessage != null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage != null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print("Add address: ");
                         address = sc.nextLine();
-                        curretntMessage = market.processInputAddress(address);
-                    } while (curretntMessage!=null);
+                        errorMessage = market.processInputAddress(address);
+                    } while (errorMessage!=null);
                     market.AddBuyer(name, password, new Adress(address, city, country));
                     System.out.println("Added new buyer.");
                 }
@@ -139,53 +139,53 @@ public class Main {
                     do {
                         if (name != null && market.findSeller(name) == null)
                             System.out.println("Seller doesnt exist!");
-                        if (curretntMessage != null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage != null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print(market.SellersList());
                         System.out.print("Choose seller: ");
                         name = sc.nextLine();
-                        curretntMessage = market.processInputString(name);
-                    } while (curretntMessage !=null|| market.findSeller(name) == null);
+                        errorMessage = market.processInputString(name);
+                    } while (errorMessage !=null|| market.findSeller(name) == null);
 
                     String itemName;
                     do {
-                        if (curretntMessage != null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage != null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print("Add product name for sale: ");
                         itemName = sc.nextLine();
-                        curretntMessage = market.processInputSentece(itemName);
-                    } while (curretntMessage!=null);
+                        errorMessage = market.processInputSentece(itemName);
+                    } while (errorMessage!=null);
 
                     do {
-                        if (curretntMessage != null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage != null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print("Add a price to the product you would like to sell: ");
                         price = sc.nextLine();
-                        curretntMessage =market.processInputDouble(price);
-                    } while (curretntMessage!=null);
+                        errorMessage =market.processInputDouble(price);
+                    } while (errorMessage!=null);
                     String wrap;
                     do {
-                        if (curretntMessage != null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage != null) {
+                            System.out.println(errorMessage);
                         }
-                        System.out.print("Do you want to add packge price to products? (y/n): ");
+                        System.out.print("Do you want to add package price to products? (y/n): ");
                         wrap = sc.nextLine();
-                        curretntMessage = market.processInputAnswer(wrap);
-                    } while (curretntMessage!=null);
+                        errorMessage = market.processInputAnswer(wrap);
+                    } while (errorMessage!=null);
                     double packagePrice;
                     if (wrap.equals("y")) {
                         String packageInput;
                         do {
-                            if (curretntMessage != null) {
-                                System.out.println(curretntMessage);
+                            if (errorMessage != null) {
+                                System.out.println(errorMessage);
                             }
                             System.out.print("Add a price to Package the product: ");
                             packageInput = sc.nextLine();
-                            curretntMessage = market.processInputDouble(packageInput);
-                        } while (curretntMessage!=null);
+                            errorMessage = market.processInputDouble(packageInput);
+                        } while (errorMessage!=null);
                         packagePrice = Double.parseDouble(packageInput);
                     } else
                         packagePrice = 0;
@@ -193,13 +193,13 @@ public class Main {
                     Category category;
                     String categoryInput;
                     do {
-                        if (curretntMessage != null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage != null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print("Add a category to the product you would like to sell: KIDS/CLOTHING/ELECTRONICS/OFFICE: ");
                         categoryInput = sc.nextLine().toUpperCase();
-                        curretntMessage = market.processInputCategory(categoryInput);
-                    } while (curretntMessage!=null);
+                        errorMessage = market.processInputCategory(categoryInput);
+                    } while (errorMessage!=null);
                     category = Category.valueOf(categoryInput);
                     Product product = new Product(itemName, Double.parseDouble(price), category, packagePrice, market.getSerialNum());
                     market.AddProduct(name, product);
@@ -212,27 +212,27 @@ public class Main {
                         do {
                             if (buyer != null && market.findBuyer(buyer) == null)
                                 System.out.println("buyer doesnt exist!");
-                            if (curretntMessage != null) {
-                                System.out.println(curretntMessage);
+                            if (errorMessage != null) {
+                                System.out.println(errorMessage);
                             }
                             System.out.print(market.BuyerList());
                             System.out.print("Choose Buyer to add Product: ");
                             buyer = sc.nextLine();
-                            curretntMessage = market.processInputString(buyer);
-                        } while (curretntMessage!=null|| market.findBuyer(buyer) == null);
+                            errorMessage = market.processInputString(buyer);
+                        } while (errorMessage!=null|| market.findBuyer(buyer) == null);
 
                         String seller = null;
                         do {
                             if (seller != null && market.findSeller(seller) == null)
                                 System.out.println("seller doesnt exist!");
-                            if (curretntMessage != null) {
-                                System.out.println(curretntMessage);
+                            if (errorMessage != null) {
+                                System.out.println(errorMessage);
                             }
                             System.out.print(market.SellersList());
                             System.out.print("Choose a Seller to buy from: ");
                             seller = sc.nextLine();
-                            curretntMessage = market.processInputString(seller);
-                        } while (curretntMessage!=null|| market.findSeller(seller) == null);
+                            errorMessage = market.processInputString(seller);
+                        } while (errorMessage!=null|| market.findSeller(seller) == null);
 
 
                         if (market.ProductListSellers(seller) == null) {
@@ -240,31 +240,31 @@ public class Main {
                         } else {
                             String itemName = null;
                             do {
-                                if (curretntMessage ==null && itemName != null && market.GetProduct(itemName, seller) == null) {
+                                if (errorMessage ==null && itemName != null && market.GetProduct(itemName, seller) == null) {
                                     System.out.println("Product doesnt exist! Returning to main menu.");
                                     break;
                                 }
-                                if (curretntMessage != null) {
-                                    System.out.println(curretntMessage);
+                                if (errorMessage != null) {
+                                    System.out.println(errorMessage);
                                 }
                                 System.out.print(market.ProductListSellers(seller));
                                 System.out.print("Choose Product to add to cart: ");
                                 itemName = sc.nextLine();
-                                curretntMessage = market.processInputSentece(itemName);
-                            } while (curretntMessage!=null|| market.GetProduct(itemName, seller) == null);
+                                errorMessage = market.processInputSentece(itemName);
+                            } while (errorMessage!=null|| market.GetProduct(itemName, seller) == null);
                             Product selected = market.GetProduct(itemName, seller);
                             if (selected != null) {
                                 if (selected.getPackagePrice() != 0) {
                                     String answer;
                                     do {
-                                        if (curretntMessage !=null) {
-                                            System.out.println(curretntMessage);
+                                        if (errorMessage !=null) {
+                                            System.out.println(errorMessage);
                                         }
                                         System.out.println("Do you want to wrap the product? (y/n) ");
                                         answer = sc.nextLine();
-                                        curretntMessage = market.processInputAnswer(answer);
-                                    } while (curretntMessage!=null);
-                                    if (answer.toLowerCase().equals("y"))
+                                        errorMessage = market.processInputAnswer(answer);
+                                    } while (errorMessage!=null);
+                                    if (answer.equalsIgnoreCase("y"))
                                         selected.setWrapped(true);
                                 }
                                 market.AddProductToBuyer(buyer, selected);
@@ -273,7 +273,7 @@ public class Main {
                         }
 
                     } else {
-                        System.out.println("There is No buyers yet, Returing to main menu");
+                        System.out.println("There is No buyers yet, Returning to main menu");
                     }
                 }
                 case "5" -> {
@@ -281,25 +281,25 @@ public class Main {
                     do {
                         if (buyer != null && market.findBuyer(buyer) == null)
                             System.out.println("buyer doesnt exist!");
-                        if (curretntMessage !=null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage !=null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print(market.BuyerList());
                         System.out.print("Choose Buyer to checkout: ");
                         buyer = sc.nextLine();
-                        curretntMessage = market.processInputString(buyer);
-                    } while (curretntMessage!=null || market.findBuyer(buyer) == null);
+                        errorMessage = market.processInputString(buyer);
+                    } while (errorMessage!=null || market.findBuyer(buyer) == null);
                     if (market.proccesInputEmptyCart(market.findBuyer(buyer).getCart())==null) {
                         String answer;
                         do {
-                            if (curretntMessage !=null) {
-                                System.out.println(curretntMessage);
+                            if (errorMessage !=null) {
+                                System.out.println(errorMessage);
                             }
                             System.out.println("Chosen Cart:\n" + market.findBuyer(buyer).getCart().ProductList());
                             System.out.print("Sum: " + market.findBuyer(buyer).getCart().getSum() + "$ ,Want to checkout? (y/n): ");
                             answer = sc.nextLine();
-                            curretntMessage = market.processInputAnswer(answer);
-                        } while (curretntMessage!=null);
+                            errorMessage = market.processInputAnswer(answer);
+                        } while (errorMessage!=null);
                         if (answer.equals("y")) {
                             market.checkout(market.findBuyer(buyer));
                             System.out.println("Checkout successful.");
@@ -308,9 +308,8 @@ public class Main {
                         }
                     }
                     else{
-                        System.out.println("Cart empty, returing to main menu");
+                        System.out.println("Cart empty, returning to main menu");
                     }
-                    //array_handler.shoppingCart();
                 }
                 case "6" -> {
                     if (market.getBuyersArray()[0] != null)
@@ -331,13 +330,13 @@ public class Main {
                     String categoryInput;
                     System.out.print("Select a category to display products: KIDS/CLOTHING/ELECTRONICS/OFFICE: ");
                     do {
-                        if (curretntMessage !=null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage !=null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print("Please enter a valid Category (KIDS/CLOTHING/ELECTRONICS/OFFICE): ");
                         categoryInput = sc.nextLine().toUpperCase();
-                        curretntMessage = market.processInputCategory(categoryInput);
-                    } while (curretntMessage!=null);
+                        errorMessage = market.processInputCategory(categoryInput);
+                    } while (errorMessage!=null);
                     category = Category.valueOf(categoryInput);
                     Cart res = market.GetProductByCategory(category);
                     System.out.println("Category: " + category);
@@ -350,35 +349,30 @@ public class Main {
                     do {
                         if (buyer != null && market.findBuyer(buyer) == null)
                             System.out.println("buyer doesnt exist!");
-                        if (curretntMessage !=null) {
-                            System.out.println(curretntMessage);
+                        if (errorMessage !=null) {
+                            System.out.println(errorMessage);
                         }
                         System.out.print(market.BuyerList());
                         System.out.print("Choose Buyer to view history carts: ");
                         buyer = sc.nextLine();
-                        curretntMessage = market.processInputString(buyer);
-                    } while (curretntMessage!=null|| market.findBuyer(buyer) == null);
+                        errorMessage = market.processInputString(buyer);
+                    } while (errorMessage!=null|| market.findBuyer(buyer) == null);
                     if (market.proccesInputEmptyHistoryCart(market.findBuyer(buyer).getHistory())!=null)
                         System.out.println("There's no history carts for this buyer yet.");
                     else {
                         do {
-                            if (curretntMessage !=null) {
-                                System.out.println(curretntMessage);
+                            if (errorMessage !=null) {
+                                System.out.println(errorMessage);
                             }
                             System.out.println(market.HistoryList(buyer));
                             System.out.println("Choose Cart you would like to replace current cart with, (by number): ");
                             choice = sc.nextLine();
-                            curretntMessage = market.processInputDynamicOption(choice,1,market.findBuyer(buyer).getHistory_count());
-                        } while (curretntMessage!=null || choice == null);
+                            errorMessage = market.processInputDynamicOption(choice,1,market.findBuyer(buyer).getHistory_count());
+                        } while (errorMessage!=null || choice == null);
                         int cart = Integer.parseInt(choice);
                         market.HistoryCartSwap(buyer, cart);
                         System.out.println("Current Cart has been updated to chosen cart.");
-//                        if (cart > market.HistoryCartLength(buyer) || cart < 1) {
-//                            System.out.println("Invalid Cart choice input back the main menu. ");
-//                        } else {
-//                            market.HistoryCartSwap(buyer, cart);
-//                            System.out.println("Current Cart has been updated to chosen cart.");
-//                        }
+
                     }
 
 
@@ -392,13 +386,13 @@ public class Main {
             address=null;
             System.out.println(text);
             do{
-                if (curretntMessage !=null) {
-                    System.out.println(curretntMessage);
+                if (errorMessage !=null) {
+                    System.out.println(errorMessage);
                 }
                 System.out.print("Enter option: ");
                 choose = sc.nextLine();
-                curretntMessage = market.processInputOption(choose);
-            }while(curretntMessage!=null);
+                errorMessage = market.processInputOption(choose);
+            }while(errorMessage!=null);
 
         }
         //}
