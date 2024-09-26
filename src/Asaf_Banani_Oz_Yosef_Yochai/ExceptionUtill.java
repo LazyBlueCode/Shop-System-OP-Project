@@ -11,7 +11,6 @@ public class ExceptionUtill{
         if (!input.matches("[a-zA-Z]+"))
             throw new IllegalArgumentException("Input contains invalid characters");
     }
-
     public void checkSentenceInput(String input) throws IllegalArgumentException {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("Input cannot be null or empty or more than one space");
@@ -79,7 +78,6 @@ public class ExceptionUtill{
             throw new InputMismatchException("Option must be between "+min+" and "+max);
         }
     }
-
     public void checkCartInput(Cart input) throws InputMismatchException{
         if(input == null) {
             throw new InputMismatchException("Option cannot empty.");
@@ -93,12 +91,6 @@ public class ExceptionUtill{
             throw new InputMismatchException("Cart is empty.");
         }
     }
-    public void checkHistoryCartInput(Buyers buyer, int index) throws IndexOutOfBoundsException {
-        if (index < 1 || index > buyer.getHistory().length) {
-            throw new IndexOutOfBoundsException("Invalid Cart number. ");
-        }
-    }
-
 
 
 

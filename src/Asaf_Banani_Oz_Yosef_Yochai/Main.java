@@ -10,6 +10,7 @@ public class Main {
     private static Market market = new Market();
 
     public static void main(String[] args) {
+
         market.AddSeller("Asaf", "Pie314");
         market.AddSeller("Oz", "secret333");
         market.AddSeller("Ron", "password12");
